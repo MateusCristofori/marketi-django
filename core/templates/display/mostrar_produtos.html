@@ -1,0 +1,14 @@
+{% extends 'partials/base.html' %} {% block content %}
+
+<ul>
+  {% for produto in produtos %}
+  <li>
+    <p>Marca: {{produto.marca}}</p>
+    <p>Modelo: {{produto.modelo}}</p>
+    <p>Lote: {{produto.lote}}</p>
+    <p>Preço: {{produto.preco}}</p>
+  </li>
+  {% endfor %}
+</ul>
+
+{% endblock content %}

@@ -1,0 +1,15 @@
+{% extends 'partials/base.html' %}
+
+
+{% block content %}
+<ul>
+    <li>Username: {{ user.username }}</li>
+    <li>E-Mail: {{ user.email }}</li>
+    <li>Nome: {{ user.first_name }}</li>
+</ul>
+
+<a href="{% url 'core:logout' %}">Logout</a>
+
+{% endblock content %}
+
+
