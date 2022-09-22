@@ -2,8 +2,10 @@
 
 <h1>Home Page</h1>
 
-<a href="{% url 'core:cadastrar-produto' 'produto' %}">Cadastrar Produto</a>
-<a href="{% url 'core:cadastrar-produto' 'computador' %}">Cadastrar Computador</a
->
-<a href="{% url 'core:cadastrar-produto' 'monitor' %}">Cadastrar Monitor</a>
+<a href="{% url 'core:cadastrar' 'produto' %}">Cadastrar Produto</a>
+<a href="{% url 'core:cadastrar' 'computador' %}">Cadastrar Computador</a>
+<a href="{% url 'core:cadastrar' 'monitor' %}">Cadastrar Monitor</a>
+<a href="{% url 'core:cadastrar-usuario' %}">Cadastrar usuário</a>
+<a href="{% url 'core:cadastrar' 'funcionario' %}">Cadastrar funcionario</a>
+<a href="{% url 'core:mostrar-produtos' %}">Mostrar produtos</a>
 {% endblock %}

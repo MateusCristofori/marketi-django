@@ -9,7 +9,6 @@ from ..models import Produto
 
 def home_view(request): return render(request, 'home.html')
 
-  
 class MostrarProdutos(views.View):
     def get(self, request):
         produtos = Produto.objects.all()
@@ -58,7 +57,13 @@ class PerfilView(LoginRequiredMixin, views.View):
             'user': request.user
         }
         return render(request, 'usuario/perfil.html', context)
+
+class DeletarProdutoView(views.View):
     
+    def get(self, request, produto_id):
+        produto: Produto = Produto.objects.get(pk = produto_id)
+        produto.delete()
+        return redirect('core:mostrar-produtos')
 
 def logout_view(request):
     logout(request)

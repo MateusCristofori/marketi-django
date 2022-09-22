@@ -3,28 +3,29 @@ from django import views
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
-from ..forms import CadastrarProdutoForm, CadastrarUsuarioForm, LoginForm, CadastrarComputadorForm, CadastrarMonitorForm
+from ..forms import CadastrarProdutoForm, CadastrarUsuarioForm, LoginForm, CadastrarComputadorForm, CadastrarMonitorForm, FuncionarioForm
 from ..models import Produto
 
 
-class CadastrarProdutoView(views.View):
+class CadastrarView(views.View):
     
-    forms_produtos = {
+    forms = {
         'produto': CadastrarProdutoForm,
         'computador': CadastrarComputadorForm,
-        'monitor': CadastrarMonitorForm
+        'monitor': CadastrarMonitorForm,
+        'funcionario': FuncionarioForm
     }
     
-    def get(self, request, tipo_produto):
-        form = self.forms_produtos[tipo_produto]()
+    def get(self, request, tipo):
+        form = self.forms[tipo]()
         
         context = {
             'form': form
         }
         return render(request, 'formularios/formulario_generico.html', context)
     
-    def post(self, request, tipo_produto):
-        form = self.forms_produtos[tipo_produto](request.POST)
+    def post(self, request, tipo):
+        form = self.forms[tipo](request.POST)
         
         if form.is_valid():
             form_limpo = form.cleaned_data
@@ -57,12 +58,5 @@ class CadastrarUsuarioView(views.View):
         print(f"Form: {form}")
         
         if form.is_valid():
-            clean_form = form.cleaned_data
-            print(f"Clean Form: {clean_form}")
-            User.objects.create_user(
-                username = clean_form.get('nome_usuario'),
-                first_name = clean_form.get('nome'),
-                password = clean_form.get('senha'),
-                email = clean_form.get('email')
-            )
+            form.save()
         return redirect('core:login')

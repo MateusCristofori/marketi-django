@@ -7,6 +7,7 @@
     <p>Modelo: {{produto.modelo}}</p>
     <p>Lote: {{produto.lote}}</p>
     <p>Preço: {{produto.preco}}</p>
+    <a href="{% url 'core:deletar-produto' produto.id %}">Deletar produto</a>
   </li>
   {% endfor %}
 </ul>

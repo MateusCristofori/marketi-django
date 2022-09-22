@@ -17,4 +17,19 @@ class Monitor(Produto):
 class Computador(Produto):
     memoria_ram = models.IntegerField()
     armazenamento = models.IntegerField()
-    sistema_operacional = models.CharField(max_length=50) 
+    sistema_operacional = models.CharField(max_length=50)
+    
+    
+class Funcionario(models.Model):
+    CARGO_CHOICES = (
+        ('CAIXA', 'Caixa'),
+        ('ESTOQUISTA', 'Estoquista'),
+        ('GERENTE', 'Gerente'),
+        ('TECNICO', 'Técnico')
+    )
+
+    nome = models.CharField(max_length=100)
+    sobrenome = models.CharField(max_length=100)
+    cargo = models.CharField(max_length=100, choices=CARGO_CHOICES)
+    matricula = models.CharField(max_length=100)
+    data_de_admissao = models.DateField()
